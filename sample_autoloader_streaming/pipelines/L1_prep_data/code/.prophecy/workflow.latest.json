@@ -1,0 +1,310 @@
+{
+  "metainfo" : {
+    "migrationVersions" : {
+      "gemBuilderVersion" : "v1"
+    },
+    "id" : "1",
+    "uri" : "pipelines/L1_prep_data",
+    "language" : "python",
+    "fabricId" : "4678",
+    "frontEndLanguage" : "sql",
+    "mode" : "batch",
+    "udfs" : {
+      "language" : "python",
+      "udfs" : [ ],
+      "functionPackageName" : "pocexperian.streamingautoloadersample.functions",
+      "sharedFunctionPackageNames" : [ "prophecy.spark_basic.functions", "prophecy.streaming.functions", "prophecy.warehouse.functions" ]
+    },
+    "udafs" : {
+      "language" : "python",
+      "code" : ""
+    },
+    "configuration" : {
+      "common" : {
+        "type" : "record",
+        "fields" : [ ]
+      },
+      "oldCommon" : {
+        "type" : "record",
+        "fields" : [ ]
+      },
+      "fabrics" : { },
+      "instances" : { },
+      "selected" : "default",
+      "nonEditable" : [ ],
+      "isSubscribedPipelineWithPipelineConfigs" : false
+    },
+    "sparkConf" : [ ],
+    "hadoopConf" : [ ],
+    "codeMode" : "sparse",
+    "buildSystem" : "maven",
+    "externalDependencies" : [ ],
+    "dependentProjectExternalDependencies" : [ {
+      "projectUID" : "12654",
+      "projectName" : "ProphecySparkBasicsPython",
+      "externalDependencies" : [ ]
+    }, {
+      "projectUID" : "12656",
+      "projectName" : "ProphecyStreamingPython",
+      "externalDependencies" : [ ]
+    }, {
+      "projectUID" : "12655",
+      "projectName" : "ProphecyWarehousePython",
+      "externalDependencies" : [ ]
+    } ],
+    "isImported" : false,
+    "interimMode" : "Full",
+    "interimModeEnabled" : true,
+    "visualCodeInterimMode" : "Disabled",
+    "recordsLimit" : {
+      "enabled" : false,
+      "value" : 1000
+    },
+    "topLevelPackage" : "l1_prep_data",
+    "configurationVersion" : "v1"
+  },
+  "connections" : [ {
+    "id" : "1Tho_IEHJU-wav1fG9pgI$$PCOtn8gDy8XJXAU-c3qKr",
+    "source" : "KbJdNqRFnA0ztNkAfWgzo$$9uAGWMm40W8yYc2I9f0Qh",
+    "sourcePort" : "NTVXvPu19RjlW_ZtSNk5p$$mGQ1U3WCtVbDoekHOvzcT",
+    "target" : "JJ5PsYK-45W0JCelW2cwP$$reuTCUlmcsisXeQS6VrcD",
+    "targetPort" : "eJkzmXM_-i1H2OKBJR7N-$$X-bDAuaTFvwDefrPpnzKR"
+  }, {
+    "id" : "DaHwvjgDIVGvDQi3GswrQ",
+    "source" : "JJ5PsYK-45W0JCelW2cwP$$reuTCUlmcsisXeQS6VrcD",
+    "sourcePort" : "3F7dj21g3eiR1mRBMokPv$$2yGZpGVmPzlVBabzssScQ",
+    "target" : "xV4FWjNjos0XYyDu6CBEe$$cQiDCDNUpkvvmvm6RISQ9",
+    "targetPort" : "GuhHYwhEyzXqGNZNRv8QO$$i8OqR4CpXnavtv6AQ4d8O"
+  } ],
+  "processes" : {
+    "KbJdNqRFnA0ztNkAfWgzo$$9uAGWMm40W8yYc2I9f0Qh" : {
+      "id" : "KbJdNqRFnA0ztNkAfWgzo$$9uAGWMm40W8yYc2I9f0Qh",
+      "component" : "Script",
+      "metadata" : {
+        "label" : "GenerateSampleData",
+        "slug" : "GenerateSampleData",
+        "x" : -680,
+        "y" : -200,
+        "phase" : 0,
+        "cache" : false,
+        "detailedStats" : false,
+        "isImported" : false,
+        "comment" : "This gem generates sample data for testing and development purposes. It creates a DataFrame with columns for date, stock symbol, analyst, and estimated earnings per share (EPS) for each stock. This data can be used to test various data processing and analysis functions."
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "NTVXvPu19RjlW_ZtSNk5p$$mGQ1U3WCtVbDoekHOvzcT",
+          "slug" : "out0",
+          "schema" : {
+            "type" : "struct",
+            "fields" : [ {
+              "name" : "date",
+              "type" : "string",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "stock_symbol",
+              "type" : "string",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "analyst",
+              "type" : "long",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "estimated_eps",
+              "type" : "double",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            } ]
+          },
+          "isStreaming" : false
+        } ],
+        "selectedInputFields" : [ ],
+        "isCustomOutputSchema" : true,
+        "autoUpdateOnRun" : true
+      },
+      "properties" : {
+        "script" : "out0 = spark.createDataFrame(\n    [('3/1/2021','a',1,2.2),\\\n     ('3/1/2021','a',2,2.0),\\\n     ('3/1/2021','b',1,1.3),\\\n     ('3/1/2021','b',2,1.2),\\\n     ('3/1/2021','c',1,3.5),\\\n     ('3/1/2021','c',2,2.6)],\n    ('date','stock_symbol','analyst','estimated_eps'))",
+        "scriptMethodHeader" : "def Script(spark: SparkSession) -> DataFrame:",
+        "scriptMethodFooter" : "    return out0"
+      }
+    },
+    "xV4FWjNjos0XYyDu6CBEe$$cQiDCDNUpkvvmvm6RISQ9" : {
+      "id" : "xV4FWjNjos0XYyDu6CBEe$$cQiDCDNUpkvvmvm6RISQ9",
+      "component" : "Target",
+      "metadata" : {
+        "label" : "LandingZone",
+        "slug" : "LandingZone",
+        "x" : -240,
+        "y" : -200,
+        "phase" : 0,
+        "cache" : false,
+        "detailedStats" : false,
+        "isImported" : false,
+        "comment" : "This gem writes the input data to a landing zone in CSV format. This is useful for storing raw data in a centralized location for further processing and analysis."
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "GuhHYwhEyzXqGNZNRv8QO$$i8OqR4CpXnavtv6AQ4d8O",
+          "slug" : "in0",
+          "schema" : {
+            "type" : "struct",
+            "fields" : [ {
+              "name" : "date",
+              "type" : "string",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "stock_symbol",
+              "type" : "string",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "analyst",
+              "type" : "long",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "estimated_eps",
+              "type" : "double",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            } ]
+          },
+          "isStreaming" : false
+        } ],
+        "outputs" : [ ],
+        "selectedInputFields" : [ ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "properties" : {
+        "datasetId" : "datasets/LandingZone"
+      }
+    },
+    "JJ5PsYK-45W0JCelW2cwP$$reuTCUlmcsisXeQS6VrcD" : {
+      "id" : "JJ5PsYK-45W0JCelW2cwP$$reuTCUlmcsisXeQS6VrcD",
+      "component" : "Repartition",
+      "metadata" : {
+        "label" : "Repartition_1",
+        "slug" : "Repartition_1",
+        "x" : -460,
+        "y" : -200,
+        "phase" : 0,
+        "cache" : false,
+        "detailedStats" : false,
+        "isImported" : false,
+        "comment" : "This gem repartitions the input data into a single partition. This could be useful for reducing the number of output files or for testing purposes where a smaller dataset is required."
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "eJkzmXM_-i1H2OKBJR7N-$$X-bDAuaTFvwDefrPpnzKR",
+          "slug" : "in0",
+          "schema" : {
+            "type" : "struct",
+            "fields" : [ {
+              "name" : "date",
+              "type" : "string",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "stock_symbol",
+              "type" : "string",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "analyst",
+              "type" : "long",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "estimated_eps",
+              "type" : "double",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            } ]
+          },
+          "isStreaming" : false
+        } ],
+        "outputs" : [ {
+          "id" : "3F7dj21g3eiR1mRBMokPv$$2yGZpGVmPzlVBabzssScQ",
+          "slug" : "out"
+        } ],
+        "selectedInputFields" : [ ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "properties" : {
+        "overwriteDefaultNPartitions" : false,
+        "hashExpressions" : [ ],
+        "columnsSelector" : [ ],
+        "repartitionType" : "random_repartitioning",
+        "rangeExpressions" : [ ],
+        "defaultPartitions" : null,
+        "nPartitions" : "1"
+      },
+      "componentInfo" : {
+        "gemId" : "gitUri=http://gitserver:3000/DxEheDCJ_team_5751/DxEheDCJ_project_12654.git&subPath=&tag=0.0.4&projectSubscriptionProjectId=12654&path=gems/Repartition",
+        "projectName" : "ProphecySparkBasicsPython"
+      }
+    }
+  },
+  "ports" : {
+    "inputs" : [ ],
+    "outputs" : [ ],
+    "selectedInputFields" : [ ],
+    "isCustomOutputSchema" : false,
+    "autoUpdateOnRun" : false
+  }
+}

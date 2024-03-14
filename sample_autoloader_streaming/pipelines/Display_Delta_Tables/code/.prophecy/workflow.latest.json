@@ -1,0 +1,157 @@
+{
+  "metainfo" : {
+    "migrationVersions" : {
+      "gemBuilderVersion" : "v1"
+    },
+    "id" : "1",
+    "uri" : "pipelines/Display_Delta_Tables",
+    "language" : "python",
+    "fabricId" : "4678",
+    "frontEndLanguage" : "sql",
+    "mode" : "batch",
+    "udfs" : {
+      "language" : "python",
+      "udfs" : [ ],
+      "functionPackageName" : "pocexperian.streamingautoloadersample.functions",
+      "sharedFunctionPackageNames" : [ "prophecy.spark_basic.functions", "prophecy.streaming.functions", "prophecy.warehouse.functions" ]
+    },
+    "udafs" : {
+      "language" : "python",
+      "code" : ""
+    },
+    "configuration" : {
+      "common" : {
+        "type" : "record",
+        "fields" : [ ]
+      },
+      "oldCommon" : {
+        "type" : "record",
+        "fields" : [ ]
+      },
+      "fabrics" : { },
+      "instances" : { },
+      "selected" : "default",
+      "nonEditable" : [ ],
+      "isSubscribedPipelineWithPipelineConfigs" : false
+    },
+    "sparkConf" : [ ],
+    "hadoopConf" : [ ],
+    "codeMode" : "sparse",
+    "buildSystem" : "maven",
+    "externalDependencies" : [ ],
+    "dependentProjectExternalDependencies" : [ {
+      "projectUID" : "12654",
+      "projectName" : "ProphecySparkBasicsPython",
+      "externalDependencies" : [ ]
+    }, {
+      "projectUID" : "12656",
+      "projectName" : "ProphecyStreamingPython",
+      "externalDependencies" : [ ]
+    }, {
+      "projectUID" : "12655",
+      "projectName" : "ProphecyWarehousePython",
+      "externalDependencies" : [ ]
+    } ],
+    "isImported" : false,
+    "interimMode" : "Full",
+    "interimModeEnabled" : true,
+    "visualCodeInterimMode" : "Disabled",
+    "recordsLimit" : {
+      "enabled" : false,
+      "value" : 1000
+    },
+    "topLevelPackage" : "display_delta_tables",
+    "configurationVersion" : "v1"
+  },
+  "connections" : [ ],
+  "processes" : {
+    "mC-mrjfPU6bMiP510yNBW$$0b2w_Z1pCtO70nJb0Q-_c" : {
+      "id" : "mC-mrjfPU6bMiP510yNBW$$0b2w_Z1pCtO70nJb0Q-_c",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "L0_LandingZone",
+        "slug" : "L0_LandingZone",
+        "x" : -520,
+        "y" : -200,
+        "phase" : 0,
+        "cache" : false,
+        "detailedStats" : false,
+        "isImported" : false
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "KTVZUu6fCV_LAsq7-ibvY$$OoZTCUiWytjfaWRhb8loK",
+          "slug" : "out"
+        } ],
+        "selectedInputFields" : [ ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "properties" : {
+        "datasetId" : "datasets/LandingZone"
+      }
+    },
+    "he_v8BGjnEGSbo2R6IcZq$$vV-vWpyMl24U2_yb0FCrl" : {
+      "id" : "he_v8BGjnEGSbo2R6IcZq$$vV-vWpyMl24U2_yb0FCrl",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "L1_BronzeTable",
+        "slug" : "L1_BronzeTable",
+        "x" : -520,
+        "y" : -40,
+        "phase" : 0,
+        "cache" : false,
+        "detailedStats" : false,
+        "isImported" : false
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "7eL8t9WrQqbeqL7aqYJGQ$$x_pdRnPeZ3X_CEItX1qup",
+          "slug" : "out"
+        } ],
+        "selectedInputFields" : [ ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "properties" : {
+        "datasetId" : "datasets/L1_BronzeTable"
+      }
+    },
+    "eocI2K6BkAqHha9ySCTJt$$f3E498lGpRU1A-Yxgo4JQ" : {
+      "id" : "eocI2K6BkAqHha9ySCTJt$$f3E498lGpRU1A-Yxgo4JQ",
+      "component" : "Source",
+      "metadata" : {
+        "label" : "L2_SilverTable",
+        "slug" : "L2_SilverTable",
+        "x" : -520,
+        "y" : 120,
+        "phase" : 0,
+        "cache" : false,
+        "detailedStats" : false,
+        "isImported" : false
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "zj7Jw6zYLIplFIaFI3INw$$7_AOjtz83ItIqZU9HCFKM",
+          "slug" : "out"
+        } ],
+        "selectedInputFields" : [ ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "properties" : {
+        "datasetId" : "datasets/L2_SilverTable"
+      }
+    }
+  },
+  "ports" : {
+    "inputs" : [ ],
+    "outputs" : [ ],
+    "selectedInputFields" : [ ],
+    "isCustomOutputSchema" : false,
+    "autoUpdateOnRun" : false
+  }
+}

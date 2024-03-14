@@ -1,0 +1,179 @@
+{
+  "metainfo" : {
+    "migrationVersions" : {
+      "gemBuilderVersion" : "v1"
+    },
+    "id" : "1",
+    "uri" : "pipelines/L3_StreamtoSilver",
+    "language" : "python",
+    "fabricId" : "4678",
+    "frontEndLanguage" : "sql",
+    "mode" : "stream",
+    "udfs" : {
+      "language" : "python",
+      "udfs" : [ ],
+      "functionPackageName" : "pocexperian.streamingautoloadersample.functions",
+      "sharedFunctionPackageNames" : [ "prophecy.spark_basic.functions", "prophecy.streaming.functions", "prophecy.warehouse.functions" ]
+    },
+    "udafs" : {
+      "language" : "python",
+      "code" : ""
+    },
+    "configuration" : {
+      "common" : {
+        "type" : "record",
+        "fields" : [ ]
+      },
+      "oldCommon" : {
+        "type" : "record",
+        "fields" : [ ]
+      },
+      "fabrics" : { },
+      "instances" : { },
+      "selected" : "default",
+      "nonEditable" : [ ],
+      "isSubscribedPipelineWithPipelineConfigs" : false
+    },
+    "sparkConf" : [ ],
+    "hadoopConf" : [ ],
+    "codeMode" : "sparse",
+    "buildSystem" : "maven",
+    "externalDependencies" : [ ],
+    "dependentProjectExternalDependencies" : [ {
+      "projectUID" : "12654",
+      "projectName" : "ProphecySparkBasicsPython",
+      "externalDependencies" : [ ]
+    }, {
+      "projectUID" : "12656",
+      "projectName" : "ProphecyStreamingPython",
+      "externalDependencies" : [ ]
+    }, {
+      "projectUID" : "12655",
+      "projectName" : "ProphecyWarehousePython",
+      "externalDependencies" : [ ]
+    } ],
+    "isImported" : false,
+    "interimMode" : "Full",
+    "interimModeEnabled" : true,
+    "visualCodeInterimMode" : "Disabled",
+    "recordsLimit" : {
+      "enabled" : false,
+      "value" : 1000
+    },
+    "topLevelPackage" : "l3_streamtosilver",
+    "configurationVersion" : "v1"
+  },
+  "connections" : [ {
+    "id" : "yOsYiI1c76yJtFwjZsdKC$$mOINTXDqqZKFnPAYcpuoe",
+    "source" : "8EzZN8h2jTraT13MbQ6g5$$lvAS7LjMBktHrWT9oAPYf",
+    "sourcePort" : "zYOCcjQfUSUSYDbG8mseo$$8V0-f9tlYqggOHvU8HSXL",
+    "target" : "6UIpLMsjy5MGRG0W6f5Si$$CXk-ZmxjSHrsV_lzki2X2",
+    "targetPort" : "VB7nTF-7ytwyOz3AS1l41$$UhsDb-KvfU_Ia7F1JhEmK"
+  } ],
+  "processes" : {
+    "8EzZN8h2jTraT13MbQ6g5$$lvAS7LjMBktHrWT9oAPYf" : {
+      "id" : "8EzZN8h2jTraT13MbQ6g5$$lvAS7LjMBktHrWT9oAPYf",
+      "component" : "StreamingSource",
+      "metadata" : {
+        "label" : "BronzeTable",
+        "slug" : "BronzeTable",
+        "x" : -260,
+        "y" : -120,
+        "phase" : 0,
+        "cache" : false,
+        "detailedStats" : false,
+        "isImported" : false,
+        "comment" : "This gem reads streaming data from a Delta table located at \"dbfs:/tmp/incrementalETL/bronze/\" and returns it as a DataFrame. "
+      },
+      "ports" : {
+        "inputs" : [ ],
+        "outputs" : [ {
+          "id" : "zYOCcjQfUSUSYDbG8mseo$$8V0-f9tlYqggOHvU8HSXL",
+          "slug" : "out"
+        } ],
+        "selectedInputFields" : [ ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "properties" : {
+        "datasetId" : "datasets/BronzeTable"
+      }
+    },
+    "6UIpLMsjy5MGRG0W6f5Si$$CXk-ZmxjSHrsV_lzki2X2" : {
+      "id" : "6UIpLMsjy5MGRG0W6f5Si$$CXk-ZmxjSHrsV_lzki2X2",
+      "component" : "StreamingTarget",
+      "metadata" : {
+        "label" : "SilverTable",
+        "slug" : "SilverTable",
+        "x" : -40,
+        "y" : -120,
+        "phase" : 0,
+        "cache" : false,
+        "detailedStats" : false,
+        "isImported" : false,
+        "comment" : "This gem writes the input DataFrame to a Delta table in append mode, with a checkpoint location specified for fault tolerance. "
+      },
+      "ports" : {
+        "inputs" : [ {
+          "id" : "VB7nTF-7ytwyOz3AS1l41$$UhsDb-KvfU_Ia7F1JhEmK",
+          "slug" : "in0",
+          "schema" : {
+            "type" : "struct",
+            "fields" : [ {
+              "name" : "date",
+              "type" : "string",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "stock_symbol",
+              "type" : "string",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "analyst",
+              "type" : "long",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            }, {
+              "name" : "estimated_eps",
+              "type" : "double",
+              "nullable" : true,
+              "metadata" : {
+                "description" : "",
+                "mappings" : [ ],
+                "tags" : [ ]
+              }
+            } ]
+          },
+          "isStreaming" : true
+        } ],
+        "outputs" : [ ],
+        "selectedInputFields" : [ ],
+        "isCustomOutputSchema" : false,
+        "autoUpdateOnRun" : false
+      },
+      "properties" : {
+        "datasetId" : "datasets/SilverTable"
+      }
+    }
+  },
+  "ports" : {
+    "inputs" : [ ],
+    "outputs" : [ ],
+    "selectedInputFields" : [ ],
+    "isCustomOutputSchema" : false,
+    "autoUpdateOnRun" : false
+  }
+}
